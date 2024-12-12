@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://o72jyn1yq20b"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_hq4xj"]
+[ext_resource type="Texture2D" uid="uid://dawl41llte7io" path="res://Assets/character-icon.png" id="2_cphxm"]
+[ext_resource type="PackedScene" uid="uid://cxebmquecfufg" path="res://Scenes/player.tscn" id="3_vdjoh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eihdw"]
+size = Vector2(41, 470)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_hq4xj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1560.0
+offset_bottom = 720.0
+
+[node name="Character" type="Sprite2D" parent="CanvasLayer/UI"]
+position = Vector2(102, 84)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_cphxm")
+
+[node name="BaseHealth" type="TextureProgressBar" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 61.0
+offset_right = 198.0
+offset_bottom = 101.0
+
+[node name="BaseHealthPH" type="ProgressBar" parent="CanvasLayer/UI"]
+custom_minimum_size = Vector2(400, 30)
+layout_mode = 0
+offset_left = 158.0
+offset_top = 61.0
+offset_right = 558.0
+offset_bottom = 91.0
+
+[node name="ResourceBar" type="TextureProgressBar" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 93.0
+offset_right = 198.0
+offset_bottom = 133.0
+
+[node name="ResourceBarPH" type="ProgressBar" parent="CanvasLayer/UI"]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 0
+offset_left = 158.0
+offset_top = 93.0
+offset_right = 458.0
+offset_bottom = 113.0
+show_percentage = false
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(958, 240)
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(20.5, 233)
+shape = SubResource("RectangleShape2D_eihdw")
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D"]
+offset_right = 40.0
+offset_bottom = 468.0
+
+[node name="Player" parent="." instance=ExtResource("3_vdjoh")]

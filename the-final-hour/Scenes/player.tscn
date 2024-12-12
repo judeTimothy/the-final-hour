@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxebmquecfufg"]
+
+[ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="1_4ps45"]
+[ext_resource type="PackedScene" uid="uid://berih8btsqsiv" path="res://Scenes/bullet.tscn" id="2_2mkhh"]
+[ext_resource type="Texture2D" uid="uid://bgs5gunsmjnpp" path="res://Assets/character-sprite.png" id="3_jiwdj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7di8d"]
+radius = 24.0
+height = 62.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(1029, 469)
+script = ExtResource("1_4ps45")
+Bullet = ExtResource("2_2mkhh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_jiwdj")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_7di8d")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(-27, 0)
