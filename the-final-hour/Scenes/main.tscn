@@ -67,3 +67,11 @@ offset_right = 40.0
 offset_bottom = 468.0
 
 [node name="Player" parent="." instance=ExtResource("3_vdjoh")]
+
+[node name="Spawner" type="Timer" parent="."]
+autostart = true
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(-117, 512)
+
+[connection signal="timeout" from="Spawner" to="." method="_on_spawner_timeout"]

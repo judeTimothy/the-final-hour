@@ -8,8 +8,10 @@ const JUMP_VELOCITY = -400.0
 var owner_class = 0
 var bullet_spd_mod = 1
 var scale_mod = Vector2(0.5,0.5)
+var current_level = 1
 
 func _ready() -> void:
+	
 	randomize()
 	var random_race = randi_range(0,3)
 	randomize()
@@ -27,22 +29,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
-	
-	velocity = Vector2.ZERO # The player's movement vector.
-	if Input.is_action_pressed("ui_up",true):
-		#animated_sprite_2d.play("up")
-		velocity.y = -SPEED
-	if Input.is_action_pressed("ui_down",true):
-		#animated_sprite_2d.play("face_down")
-		velocity.y = SPEED
-	if Input.is_action_pressed("ui_left",true):
-		#animated_sprite_2d.play("left")
-		velocity.x = -SPEED
-	if Input.is_action_pressed("ui_right",true):
-		#animated_sprite_2d.play("right")
-		velocity.x = SPEED
+	current_level = float(Autoloads.level/10.0)
+	velocity.x = SPEED * current_level
 	if velocity.length() > 0:
 		move_and_slide()
 
